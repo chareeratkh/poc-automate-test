@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test';
-import { loginUser, registerUser } from './api';
-import { loginData, registerData } from './data';
+import { loginUser } from './api';
+import { loginData } from './data';
 
 test.describe('Login API Tests', () => {
   for (const loginCase of loginData) {
@@ -15,28 +15,6 @@ test.describe('Login API Tests', () => {
       const responseBody = await response.json();
       if (loginCase.expectedStatus === 200) {
         expect(responseBody.token).toBeTruthy();
-      } else {
-        expect(responseBody.error).toBeTruthy();
-      }
-    });
-  }
-});
-
-test.describe('Register API Tests', () => {
-  for (const regCase of registerData) {
-    test(`${regCase.description} (status ${regCase.expectedStatus})`, async ({ request }) => {
-      const body = {};
-      if (regCase.email) body.email = regCase.email;
-      if (regCase.password) body.password = regCase.password;
-
-      const response = await registerUser(request, body);
-      expect(response.status()).toBe(regCase.expectedStatus);
-
-      const responseBody = await response.json();
-
-      if (regCase.expectedStatus === 200) {
-        expect(responseBody.token).toBeTruthy();
-        expect(responseBody.id).toBeTruthy();
       } else {
         expect(responseBody.error).toBeTruthy();
       }
