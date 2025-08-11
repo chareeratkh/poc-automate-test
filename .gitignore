@@ -1,0 +1,5 @@
+# Node modules 
+node_modules/
+
+# Playwright Results 
+test-results/
