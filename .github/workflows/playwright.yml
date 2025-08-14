@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - test-automate-fe
   pull_request:
 
 jobs:
