@@ -1,4 +1,3 @@
-import { test, expect } from '@playwright/test';
 
 export class LoginPage {
     baseUrl = 'https://www.saucedemo.com/';
